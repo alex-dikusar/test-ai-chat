@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 import { ChatModule } from './chat/chat.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 // Load .env from api/ first, then from monorepo root (so one root .env works)
 const envPaths = [
@@ -15,6 +16,7 @@ const envPaths = [
       isGlobal: true,
       envFilePath: envPaths,
     }),
+    PrismaModule,
     ChatModule,
   ],
 })
