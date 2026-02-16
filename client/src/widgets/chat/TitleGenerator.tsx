@@ -7,7 +7,11 @@ const TITLE_API = '/api/chat/title';
  * After the first exchange in a thread, requests a summary title from the API
  * and renames the thread (ChatGPT-style).
  */
-export function TitleGenerator() {
+type TitleGeneratorProps = {
+  token: string
+}
+
+export function TitleGenerator({ token }: TitleGeneratorProps) {
   const runtime = useAssistantRuntime();
   const aui = useAui();
 
@@ -23,7 +27,10 @@ export function TitleGenerator() {
       try {
         const res = await fetch(TITLE_API, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
           body: JSON.stringify({ messages }),
         });
         if (!res.ok) return;
@@ -35,7 +42,7 @@ export function TitleGenerator() {
       }
     });
     return () => unsubscribe();
-  }, [runtime, aui]);
+  }, [runtime, aui, token]);
 
   return null;
 }
