@@ -1,30 +1,32 @@
 import type { FC } from 'react';
 import { AuiIf, ComposerPrimitive } from '@assistant-ui/react';
+import { Button, Textarea } from '@/shared/ui';
 
 export const Composer: FC = () => {
   return (
-    <ComposerPrimitive.Root className="composer">
+    <ComposerPrimitive.Root className="mt-2 flex flex-col gap-2">
       <ComposerPrimitive.Input
+        asChild
         placeholder="Send a message..."
         rows={2}
-        minRows={1}
         autoFocus
         aria-label="Message input"
-        className="composer__input"
-      />
-      <div className="composer__actions">
+      >
+        <Textarea className="min-h-[56px] resize-none rounded-2xl border-border bg-card px-4 py-3 shadow-sm focus-visible:ring-2" />
+      </ComposerPrimitive.Input>
+      <div className="flex justify-end gap-2">
         <AuiIf condition={({ thread }) => thread.isRunning}>
           <ComposerPrimitive.Cancel asChild>
-            <button type="button" className="composer__btn composer__btn--cancel">
+            <Button type="button" variant="secondary" size="sm">
               Stop
-            </button>
+            </Button>
           </ComposerPrimitive.Cancel>
         </AuiIf>
         <AuiIf condition={({ thread }) => !thread.isRunning}>
           <ComposerPrimitive.Send asChild>
-            <button type="submit" className="composer__btn composer__btn--send">
+            <Button type="submit" size="sm">
               Send
-            </button>
+            </Button>
           </ComposerPrimitive.Send>
         </AuiIf>
       </div>
