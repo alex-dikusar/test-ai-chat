@@ -1,0 +1,101 @@
+.conversation-list {
+  width: 240px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.conversation-list__root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.conversation-list__new {
+  flex-shrink: 0;
+  margin: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.25);
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.conversation-list__new:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.conversation-list__new[data-active="true"] {
+  border-style: solid;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.conversation-list__items-wrapper {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 0 0.5rem 0.5rem;
+}
+
+.conversation-list__item {
+  border-radius: 6px;
+  margin-bottom: 2px;
+}
+
+.conversation-list__item-trigger {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conversation-list__item-trigger:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.conversation-list__item[data-active="true"] .conversation-list__item-trigger {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (prefers-color-scheme: light) {
+  .conversation-list {
+    border-right-color: rgba(0, 0, 0, 0.08);
+    background: rgba(0, 0, 0, 0.03);
+  }
+
+  .conversation-list__new {
+    border-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .conversation-list__new:hover {
+    border-color: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .conversation-list__new[data-active="true"] {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .conversation-list__item-trigger:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  .conversation-list__item[data-active="true"] .conversation-list__item-trigger {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
